@@ -1,3 +1,30 @@
+
+
+
+class Solution {
+public:
+    void helper( vector<vector<int>>&image, int i, int j, int newColor, int existing_color)
+     {
+        if(i < 0 or i >= image.size() or j < 0 or j >= image[0].size() or image[i][j]!= existing_color or image[i][j]==newColor)
+            return;
+        
+        image[i][j] = newColor;
+        helper( image, i-1, j, newColor, existing_color);
+        helper(image, i, j+1, newColor, existing_color);
+        helper(image, i+1, j, newColor, existing_color);
+        helper(image, i, j-1, newColor, existing_color);
+     }
+    
+    
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+        int existing_color = image[sr][sc];
+        helper(image, sr, sc, newColor, existing_color);
+        
+        return image;
+    }
+};
+
+/*
 class Solution {
 public:
 	void dfs(vector<vector<int>>& image,int sr,int sc,int newColor,int x)
@@ -16,3 +43,4 @@ public:
 	return image;
 	}
 };
+*/
